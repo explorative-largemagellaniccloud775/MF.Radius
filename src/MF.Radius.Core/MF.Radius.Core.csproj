@@ -1,0 +1,55 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <IsPackable>true</IsPackable>
+        <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+
+        <!-- NuGet Package Metadata -->
+        <PackageId>MF.Radius.Core</PackageId>
+        <Version>0.1.0</Version>
+        <Authors>Mikhail Kalinin</Authors>
+        <Description>
+            High-performance RADIUS protocol engine for .NET 10.
+            Designed for low latency and minimal GC pressure using Span&lt;T&gt;, Memory&lt;T&gt;, and ArrayPool&lt;byte&gt;.
+            Supports Authentication, Accounting, CoA, and Disconnect-Messages with PAP, CHAP, and MS-CHAPv2.
+            This is the core library; for a full server implementation using Clean Architecture and CQRS, visit the project GitHub.
+        </Description>
+        <PackageTags>radius;networking;protocol;aaa;authentication;accounting;authorization;zero-allocation;low-latency;dotnet10;high-performance;udp;cisco;mikrotik;ms-chapv2;security;nas</PackageTags>
+        <RepositoryUrl>https://github.com/morfair/MF.Radius</RepositoryUrl>
+        <RepositoryBranch>main</RepositoryBranch>
+        <RepositoryType>git</RepositoryType>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <PackageReleaseNotes>
+            Initial release of the high-performance RADIUS core.
+            Features zero-allocation packet parsing and building.
+        </PackageReleaseNotes>
+        <Copyright>Copyright © 2026 Mikhail Kalinin</Copyright>
+        <PackageProjectUrl>https://github.com/morfair/MF.Radius</PackageProjectUrl>
+
+        <!-- Compilation & Packaging Settings -->
+        <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+
+        <!-- SourceLink Settings -->
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+        <EmbedUntrackedSources>true</EmbedUntrackedSources>
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+
+    </PropertyGroup>
+
+    <ItemGroup>
+        <!-- For NuGet package -->
+        <None Include="..\..\README.md" Pack="true" PackagePath="\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="10.0.3" />
+      <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.3" />
+    </ItemGroup>
+
+</Project>

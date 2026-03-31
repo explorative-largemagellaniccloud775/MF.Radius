@@ -1,0 +1,104 @@
+@Host = http://localhost:5009
+@ApiBase = {{Host}}/api
+
+###############################################################################
+# Observability / Contract discovery
+###############################################################################
+
+### OpenAPI document (available in Development environment)
+GET {{Host}}/openapi/v1.json
+Accept: application/json
+
+### Prometheus metrics
+GET {{Host}}/metrics
+Accept: text/plain
+
+###############################################################################
+# Sessions
+###############################################################################
+
+### Get all active sessions
+GET {{ApiBase}}/sessions/
+Accept: application/json
+
+### Get sessions by user name
+GET {{ApiBase}}/sessions/test-subscriber
+Accept: application/json
+
+### Get session by NAS endpoint + Acct-Session-Id
+GET {{ApiBase}}/sessions/by-id?nasIp=127.0.0.1&nasPort=1813&sessionId=SID-001
+Accept: application/json
+
+### Get session by NAS endpoint + Acct-Session-Id (invalid NAS IP -> 400 envelope)
+GET {{ApiBase}}/sessions/by-id?nasIp=not-an-ip&nasPort=1813&sessionId=SID-001
+Accept: application/json
+
+### Get session by NAS endpoint + Acct-Session-Id (not found -> 404 envelope)
+GET {{ApiBase}}/sessions/by-id?nasIp=127.0.0.1&nasPort=1813&sessionId=SID-NOT-EXISTS
+Accept: application/json
+
+###############################################################################
+# Subscribers
+###############################################################################
+
+### Get subscriber profile by user name
+GET {{ApiBase}}/subscribers/test-subscriber
+Accept: application/json
+
+### Get subscriber profile (not found -> 404 envelope)
+GET {{ApiBase}}/subscribers/not-existing-user
+Accept: application/json
+
+###############################################################################
+# NAS commands
+###############################################################################
+
+### Send Disconnect-Request (DM)
+POST {{ApiBase}}/commands/disconnect
+Content-Type: application/json
+Accept: application/json
+
+{
+  "nasIp": "127.0.0.1",
+  "nasPort": 3799,
+  "sessionId": "SID-001",
+  "userName": "test-subscriber"
+}
+
+### Send Disconnect-Request (invalid endpoint -> 400 envelope)
+POST {{ApiBase}}/commands/disconnect
+Content-Type: application/json
+Accept: application/json
+
+{
+  "nasIp": "invalid-ip",
+  "nasPort": 3799,
+  "sessionId": "SID-001",
+  "userName": "test-subscriber"
+}
+
+### Send CoA restriction command
+POST {{ApiBase}}/commands/restrict
+Content-Type: application/json
+Accept: application/json
+
+{
+  "nasIp": "127.0.0.1",
+  "nasPort": 3799,
+  "sessionId": "SID-001",
+  "userName": "test-subscriber",
+  "aclName": "WALLED-GARDEN"
+}
+
+### Send CoA restriction command (invalid endpoint -> 400 envelope)
+POST {{ApiBase}}/commands/restrict
+Content-Type: application/json
+Accept: application/json
+
+{
+  "nasIp": "invalid-ip",
+  "nasPort": 3799,
+  "sessionId": "SID-001",
+  "userName": "testuser",
+  "aclName": "WALLED-GARDEN"
+}

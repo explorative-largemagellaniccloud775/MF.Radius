@@ -1,0 +1,23 @@
+# Build outputs
+bin/
+obj/
+/packages/
+/artifacts/
+/TestResults/
+/coverage/
+
+# IDE / editor state
+.idea/
+.vs/
+*.sln.DotSettings.user
+*.user
+*.rsuser
+*.suo
+*.userosscache
+*.sln.docstates
+riderModule.iml
+/_ReSharper.Caches/
+
+# Local logs / caches
+*.log
+*.cache

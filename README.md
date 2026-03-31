@@ -1,7 +1,5 @@
 ﻿# MF.Radius 🛰️
-**English** | [🇷🇺 Русский язык](./README_ru.md) 
-
-**MF.Radius** is a high-performance RADIUS protocol framework...
+**English** | [🇷🇺 Русский язык](https://github.com/morfair/MF.Radius/blob/main/README_ru.md)
 
 **MF.Radius** is a high-performance framework for implementing the RADIUS protocol on the **.NET 10** platform.
 Designed to operate under extreme loads (AAA traffic) with a strong focus on **Zero-Allocation** architecture and **Clean Architecture** principles.
@@ -29,14 +27,14 @@ In modern network solutions, every microsecond and every Garbage Collector (GC) 
 ## 🏁 How to get started?
 
 ### 1. Dependency Installation
-The package is available on [NuGet](https://www.nuget.org/packages/MF.Radius.Core). To install, run the following command:
+The package will be available on [NuGet](https://www.nuget.org/packages/MF.Radius.Core) after the first public release. To install, run the following command:
 ```bash
 dotnet add package MF.Radius.Core
 ```
 
 ### 2. Choosing an Integration Approach
 You can integrate the library into your project at different levels of abstraction:
-- **Using the Template**: base your project on [MF.Radius.SampleServer](./src/MF.Radius.SampleServer). All business logic in it is centralized in the `IspRadiusProcessor` class. This is the fastest way to build a typical server;
+- **Using the Template**: base your project on [MF.Radius.SampleServer](https://github.com/morfair/MF.Radius/tree/main/src/MF.Radius.SampleServer). All business logic in it is centralized in the `IspRadiusProcessor` class. This is the fastest way to build a typical server;
 - **Inheritance**: create your own processor by inheriting from `RadiusProcessorBase`, this gives you a ready-made wrapper and lets you focus purely on packet processing logic;
 - **Full Control**: implement the `IRadiusProcessor` interface yourself if you need custom behavior at a low level.
 
@@ -44,9 +42,13 @@ You can integrate the library into your project at different levels of abstracti
 After configuring DI and registering your processor, the server will automatically start listening for incoming UDP requests.
 Ports and network parameters are specified in the standard `appsettings.json` configuration file:
 ```json
+{
   "RadiusListener": {
     "BindAddress": "0.0.0.0",
-    "Ports": [1812, 1813],
+    "Ports": [
+      1812,
+      1813
+    ],
     "InboundQueueSize": 1000,
     "ConcurrentWorkers": 2
   },
@@ -66,15 +68,16 @@ Ports and network parameters are specified in the standard `appsettings.json` co
   "DemoSecurity": {
     "SharedSecret": "testing123"
   }
+}
 ```
 
-In the directory [src/MF.Radius.SampleServer](src/MF.Radius.SampleServer) you will find an example of a full-fledged server with REST API integration, logs and metrics.
+In the directory [src/MF.Radius.SampleServer](https://github.com/morfair/MF.Radius/tree/main/src/MF.Radius.SampleServer) you will find an example of a full-fledged server with REST API integration, logs and metrics.
 
 ## 🆘 Where to get help?
 
 If you encounter a problem, have a question, or have an idea to improve the library — I will be glad to hear your feedback!
-- [Issues](./issues): use this for bug reports or feature requests;
-- [Discussions](./discussions): come here if you want to discuss architecture or ask "how do I do X?".
+- [Issues](https://github.com/morfair/MF.Radius/issues): use this for bug reports or feature requests;
+- [Discussions](https://github.com/morfair/MF.Radius/discussions): come here if you want to discuss architecture or ask "how do I do X?".
 - [Telegram](https://t.me/morfair_ru): contact me directly.
 
 ## 🤝 Contributing and Support

